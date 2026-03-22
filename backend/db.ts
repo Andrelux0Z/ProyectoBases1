@@ -11,10 +11,11 @@ import sql from 'mssql';
  */
 
 const config: sql.config = {
-    server: 'localhost',
+    server: '25.34.166.162',
+    port: 1433,
     database: 'Proyecto1',
     options: {
-        encrypt: false,
+        encrypt: true,
         trustServerCertificate: true,
     },
     authentication: {
