@@ -2,18 +2,14 @@ import sql from 'mssql';
 
 
 /**
- * Módulo de configuración para la conexión a SQL Server
- * 
  * Este archivo define la configuración necesaria para establecer
- * una conexión con la base de datos SQL Server usando la librería 'mssql'
- * 
- * 
+ * conexión con la base de datos SQL Server usando la librería "mssql"
  */
 
 const config: sql.config = {
-    server: '25.34.166.162',
-    port: 1433,
-    database: 'Proyecto1',
+    server: process.env.DB_SERVER || '',
+    port: Number(process.env.DB_PORT) || 1433,
+    database: process.env.DB_DATABASE || '',
     options: {
         encrypt: true,
         trustServerCertificate: true,
@@ -21,8 +17,8 @@ const config: sql.config = {
     authentication: {
         type: 'default',
         options: {
-            userName: 'ErikLogin',
-            password:  '1234admin',
+            userName: process.env.DB_USER || '',
+            password:  process.env.DB_PASSWORD || '',
         }
 
     }
