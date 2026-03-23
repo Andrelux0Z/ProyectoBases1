@@ -40,7 +40,7 @@ export default function ConsultarPage() {
         {/* Encabezado fijado*/}
         <thead className="sticky top-0 bg-gray-100 z-10 shadow-sm">
           <tr className="border-b-2 border-gray-300">
-            <th className="py-3 px-6 font-bold text-gray-800">#</th>
+            <th className="py-3 px-6 font-bold text-gray-800">id</th>
             <th className="py-3 px-6 font-bold text-gray-800">Nombre</th>
             <th className="py-3 px-6 font-bold text-gray-800">Salario</th>
           </tr>
@@ -57,7 +57,7 @@ export default function ConsultarPage() {
               <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                 <td className="py-3 px-6">{empleado.idEmpleado}</td>
                 <td className="py-3 px-6">{empleado.nombreEmpleado}</td>
-                <td className="py-3 px-6">${salarioMostrado}</td>
+                <td className="py-3 px-6">₡{salarioMostrado}</td>
               </tr>
             );
           })}
