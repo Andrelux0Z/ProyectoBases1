@@ -18,7 +18,13 @@ export async function postEmpleado (req: Request, res: Response) {
 		const { nombre, salario } = req.body;
 
 		if (typeof nombre !== 'string' || nombre.trim().length === 0) {
-			return res.status(400).json({ mensaje: 'Nombre es requerido.' });
+			return res.status(400).json({ mensaje: 'Nombre es requerido y debe ser texto.' });
+		}
+
+		// Validar que el nombre solo contenga letras, espacios, puntos o guiones
+		const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\.\-]+$/;
+		if (!regexNombre.test(nombre.trim())) {
+			return res.status(400).json({ mensaje: 'El nombre solo puede contener letras, espacios, puntos o guiones.' });
 		}
 
 		let salarioNumber: number;
@@ -29,6 +35,9 @@ export async function postEmpleado (req: Request, res: Response) {
 		}
 		if (!Number.isFinite(salarioNumber)) {
 			return res.status(400).json({ mensaje: 'Salario debe ser un número válido.' });
+		}
+		if (salarioNumber < 0) {
+			return res.status(400).json({ mensaje: 'El salario no puede ser negativo.' });
 		}
 
 		const resultado = await insertarEmpleado(nombre.trim(), salarioNumber);
